@@ -1,7 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
-from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
-import torch
+from transformers import pipeline
 
 st.set_page_config(page_title="Emotion Analyzer",
                    layout="centered")
@@ -9,20 +8,12 @@ st.set_page_config(page_title="Emotion Analyzer",
 genai.configure(api_key="AIzaSyDSz-1bIcKSVg3oLuIXTH2IVa3uNk1aGqU")
 gemini = genai.GenerativeModel('gemini-2.0-flash')
 
-@st.cache_resource
-def load_classifier():
-    model_name = "SamLowe/roberta-base-go_emotions"
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSequenceClassification.from_pretrained(model_name)
-    return pipeline(
-        "text-classification",
-        model=model,
-        tokenizer=tokenizer,
-        top_k=None,
-        device=-1
-    )
-
-classifier = load_classifier()
+classifier = pipeline(
+    "text-classification",
+    model="SamLowe/roberta-base-go_emotions",
+    top_k=None,
+    device=-1
+)
 
 st.title("Emotion Analyzer")
 st.markdown("*Understand your emotions through journaling*")
@@ -89,5 +80,5 @@ Journal entry: {journal_entry}"""
                 with col2:
                     st.write(f"{emotion['score']:.1%}")
 
-        except Exception as e:
+        except:
             st.error("Too many requests. Please wait a moment and try again.")
