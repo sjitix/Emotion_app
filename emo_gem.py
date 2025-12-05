@@ -79,8 +79,6 @@ Journal entry: {journal_entry}"""
 
                 with col2:
                     st.write(f"{emotion['score']:.1%}")
-             except:
-                 st.error("Too many requests. Please wait a moment and try again.")
 
-
-
+        except:
+            st.error("Too many requests. Please wait a moment and try again.")
