@@ -45,14 +45,19 @@ if st.button("Analyze Emotions",
         st.warning("Please write a bit more (at least 5 characters).")
     else:
         
-            clarify_prompt = f"""Rewrite this journal entry to make the TRUE emotions explicit and clear.
+            clarify_prompt = f"""  Rewrite this journal entry to make the TRUE emotions explicit and clear.
 
 Rules:
-- Identify what the person is ACTUALLY feeling (not surface-level words)
+- Identify what the person is feeling 
 - Rewrite using clear emotional language
-- Remove sarcasm, negations, and misleading phrases
+- Simplify sarcasm, negations, and misleading phrases
 - Keep it similar length to original
 - Write in first person
+- Be objective , try to not overthink what the person is saying, if there is 
+sarcasm or contextual meaning involved then simplify it but don't always assume
+there will be some hidden meaning.Sometimes there could be no hidden meaning 
+and sometimes there is.Try your best to simplify considering all this and reflect
+the persons feelings.
 
 
 
@@ -102,3 +107,4 @@ Journal entry: {journal_entry}"""
                 with col2:
                     # Format as percentage: 0.4 -> "40.0%"
                     st.write(f"{emotion['score']:.1%}")
+
