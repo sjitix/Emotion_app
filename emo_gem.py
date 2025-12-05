@@ -1,0 +1,104 @@
+
+import streamlit as st
+
+import google.generativeai as genai
+
+from transformers import pipeline
+
+
+st.set_page_config(page_title = "Commented",
+                   layout = "centered")
+
+
+
+# Configure Gemini with your API key (free from aistudio.google.com)
+genai.configure(api_key="AIzaSyDSz-1bIcKSVg3oLuIXTH2IVa3uNk1aGqU")
+
+# Create Gemini model instance - used to CLARIFY emotional context
+gemini = genai.GenerativeModel('gemini-2.0-flash')
+
+
+classifier = pipeline(
+    "text-classification",
+    model="SamLowe/roberta-base-go_emotions",
+    top_k=None,
+    device="cpu",
+    truncation=True,
+    max_length=512
+)
+
+
+st.title("Emotion Analyzer")
+st.markdown("*Understand your emotions through journaling*")
+st.divider()
+
+
+
+journal_entry = st.text_area("How are you feeling today?",
+                             height=150)
+
+
+if st.button("Analyze Emotions",
+             use_container_width=True):
+
+    if len(journal_entry.strip()) < 5:
+        st.warning("Please write a bit more (at least 5 characters).")
+    else:
+        
+            clarify_prompt = f"""Rewrite this journal entry to make the TRUE emotions explicit and clear.
+
+Rules:
+- Identify what the person is ACTUALLY feeling (not surface-level words)
+- Rewrite using clear emotional language
+- Remove sarcasm, negations, and misleading phrases
+- Keep it similar length to original
+- Write in first person
+
+
+
+Only output the rewritten text, nothing else.
+
+Journal entry: {journal_entry}"""
+
+            # Send to Gemini and get clarified text
+            response = gemini.generate_content(clarify_prompt)
+            clarified_text = response.text.strip()
+
+           #roberta model
+            raw_results = classifier(clarified_text)[0]
+
+
+            sorted_results = sorted(raw_results,
+                                key=lambda x: x['score'],
+                                reverse=True)
+
+       
+
+       
+            with st.expander("How I interpreted your entry"):
+                st.write(clarified_text)
+
+            st.divider()
+
+       
+            dominant = sorted_results[0]
+            st.subheader(f"Dominant Emotion: {dominant['label'].capitalize()}")
+    
+            if dominant['score'] < 0.30:
+                st.caption("(Low confidence)")
+    
+            st.divider()
+            st.subheader("Emotion Breakdown")
+    
+          
+    
+            for emotion in sorted_results[:6]:
+                col1, col2 = st.columns([3, 1])
+    
+                with col1:
+                    # st.progress: Progress bar (0.0 to 1.0)
+                    st.progress(emotion['score'], text=emotion['label'].capitalize())
+    
+                with col2:
+                    # Format as percentage: 0.4 -> "40.0%"
+                    st.write(f"{emotion['score']:.1%}")
