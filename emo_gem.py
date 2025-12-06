@@ -64,7 +64,7 @@ Journal entry: {journal_entry}"""
             st.divider()
 
             dominant = sorted_results[0]
-            st.subheader(f"Dominant Emotion: {dominant['label'].capitalize()}")
+            st.subheader(f"⭐ Dominant Emotion: {dominant['label'].capitalize()}")
 
             if dominant['score'] < 0.30:
                 st.caption("(Low confidence)")
