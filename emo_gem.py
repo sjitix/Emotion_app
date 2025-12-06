@@ -5,7 +5,7 @@ from transformers import pipeline
 st.set_page_config(page_title="Emotion Analyzer",
                    layout="centered")
 
-genai.configure(api_key="AIzaSyDSz-1bIcKSVg3oLuIXTH2IVa3uNk1aGqU")
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 gemini = genai.GenerativeModel('gemini-2.0-flash')
 
 classifier = pipeline(
