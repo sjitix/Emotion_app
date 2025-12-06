@@ -1,4 +1,3 @@
-
 import streamlit as st
 import google.generativeai as genai
 from transformers import pipeline
@@ -12,28 +11,12 @@ gemini = genai.GenerativeModel('gemini-2.0-flash')
 classifier = pipeline(
     "text-classification",
     model="SamLowe/roberta-base-go_emotions",
-    top_k=None
+    top_k=None,
+    device=-1
 )
 
-st.markdown("""
-    <h1 style='text-align: center;
-               color: #FF1493;
-               font-size: 3.5em;
-               font-weight: bold;
-               text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-               margin-bottom: 0;'>
-        🎭 <i>Reflectify</i>
-    </h1>
-    <p style='text-align: center;
-              color: #7B68EE;
-              font-style: italic;
-              font-size: 1.2em;
-              margin-top: 10px;
-              border-bottom: 2px solid #4A90E2;
-              padding-bottom: 20px;'>
-        ✨ Understand your emotions through journaling ✨
-    </p>
-""", unsafe_allow_html=True)
+st.title("Emotion Analyzer")
+st.markdown("*Understand your emotions through journaling*")
 st.divider()
 
 journal_entry = st.text_area("How are you feeling today?",
@@ -80,7 +63,7 @@ Journal entry: {journal_entry}"""
             st.divider()
 
             dominant = sorted_results[0]
-            st.subheader(f"⭐ Dominant Emotion: {dominant['label'].capitalize()}")
+            st.subheader(f"Dominant Emotion: {dominant['label'].capitalize()}")
 
             if dominant['score'] < 0.30:
                 st.caption("(Low confidence)")
