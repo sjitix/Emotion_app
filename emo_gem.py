@@ -15,7 +15,7 @@ classifier = pipeline(
     device=-1
 )
 
-st.title("Emotion Analyzer")
+st.markdown("<h1 style='color: green;'>Emotion Analyzer</h1>", unsafe_allow_html=True)
 st.markdown("*Understand your emotions through journaling*")
 st.divider()
 
