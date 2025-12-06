@@ -2,6 +2,7 @@
 import streamlit as st
 import google.generativeai as genai
 from transformers import pipeline
+import plotly.graph_objects as go
 
 st.set_page_config(page_title="Emotion Analyzer",
                    layout="centered")
@@ -17,7 +18,7 @@ classifier = pipeline(
 
 st.markdown("""
     <h1 style='text-align: center;
-               color: #FF1493;
+               color: #2E8B57;
                font-size: 3.5em;
                font-weight: bold;
                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -25,11 +26,11 @@ st.markdown("""
         🎭 <i>Reflectify</i>
     </h1>
     <p style='text-align: center;
-              color: #7B68EE;
+              color: #4A90E2;
               font-style: italic;
               font-size: 1.2em;
               margin-top: 10px;
-              border-bottom: 2px solid #4A90E2;
+              border-bottom: 2px solid #708090;
               padding-bottom: 20px;'>
         ✨ Understand your emotions through journaling ✨
     </p>
@@ -81,6 +82,59 @@ Journal entry: {journal_entry}"""
 
             dominant = sorted_results[0]
             st.subheader(f"⭐ Dominant Emotion: {dominant['label'].capitalize()}")
+
+            if dominant['score'] < 0.30:
+                st.caption("(Low confidence)")
+
+            st.divider()
+            st.subheader("📊 Emotion Trends Over Time")
+
+            # Simple data - 7 days of emotion scores
+            days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            joy_scores = [65, 70, 55, 80, 60, 75, 50]
+            sadness_scores = [30, 25, 40, 20, 35, 25, 45]
+            anxiety_scores = [15, 20, 25, 10, 30, 20, 35]
+
+            # Create the chart
+            fig = go.Figure()
+
+            # Add line for Joy (teal color)
+            fig.add_trace(go.Scatter(
+                x=days,
+                y=joy_scores,
+                name="Joy",
+                line=dict(color="#20B2AA", width=3)
+            ))
+
+            # Add line for Sadness (steel blue color)
+            fig.add_trace(go.Scatter(
+                x=days,
+                y=sadness_scores,
+                name="Sadness",
+                line=dict(color="#4682B4", width=3)
+            ))
+
+            # Add line for Anxiety (yellow color)
+            fig.add_trace(go.Scatter(
+                x=days,
+                y=anxiety_scores,
+                name="Anxiety",
+                line=dict(color="#FFD700", width=3)
+            ))
+
+            # Make it look nice
+            fig.update_layout(
+                height=400,
+                plot_bgcolor="white",
+                yaxis_title="Intensity (%)",
+                xaxis_title="Day of Week",
+                showlegend=True
+            )
+
+            # Show the chart
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.divider()
 
             if dominant['score'] < 0.30:
                 st.caption("(Low confidence)")
