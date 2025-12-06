@@ -12,8 +12,7 @@ gemini = genai.GenerativeModel('gemini-2.0-flash')
 classifier = pipeline(
     "text-classification",
     model="SamLowe/roberta-base-go_emotions",
-    top_k=None,
-    device=-1
+    top_k=None
 )
 
 st.markdown("""
