@@ -16,8 +16,8 @@ classifier = pipeline(
 )
 
 st.sidebar.title("Navigation")
-if st.sidebar.button("Records"):
-    st.switch_page("pages/records.py")
+st.sidebar.page_link("emo_gem.py", label="Home")
+st.sidebar.page_link("pages/records.py", label="Records")
 
 st.markdown("<h1 style='color: red;'>Emotion Analyzer</h1>", unsafe_allow_html=True)
 st.markdown("*Understand your emotions through journaling*")

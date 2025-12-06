@@ -3,8 +3,8 @@ import streamlit as st
 st.set_page_config(page_title="Records", layout="centered")
 
 st.sidebar.title("Navigation")
-if st.sidebar.button("Home"):
-    st.switch_page("emo_gem.py")
+st.sidebar.page_link("emo_gem.py", label="Home")
+st.sidebar.page_link("pages/records.py", label="Records")
 
 st.markdown("<h1 style='color: red;'>Records</h1>", unsafe_allow_html=True)
 
