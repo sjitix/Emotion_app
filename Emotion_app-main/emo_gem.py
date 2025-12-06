@@ -16,7 +16,7 @@ classifier = pipeline(
 
 st.markdown("""
     <h1 style='text-align: center;
-               color: red;
+               color: black;
                font-size: 3.5em;
                font-weight: bold;
                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
