@@ -18,10 +18,7 @@ classifier = pipeline(
 
 st.markdown("""
     <h1 style='text-align: center;
-               background: linear-gradient(90deg, #4A90E2, #7B68EE, #00CED1);
-               -webkit-background-clip: text;
-               -webkit-text-fill-color: transparent;
-               background-clip: text;
+               color: #FF1493;
                font-size: 3.5em;
                font-weight: bold;
                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
