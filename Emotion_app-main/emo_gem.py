@@ -14,6 +14,10 @@ classifier = pipeline(
     top_k=None
 )
 
+st.sidebar.title("Navigation")
+if st.sidebar.button("Records"):
+    st.switch_page("pages/records.py")
+
 st.markdown("""
     <h1 style='text-align: center;
                color: red;

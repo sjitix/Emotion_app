@@ -15,6 +15,10 @@ classifier = pipeline(
     device=-1
 )
 
+st.sidebar.title("Navigation")
+if st.sidebar.button("Records"):
+    st.switch_page("pages/records.py")
+
 st.markdown("<h1 style='color: red;'>Emotion Analyzer</h1>", unsafe_allow_html=True)
 st.markdown("*Understand your emotions through journaling*")
 st.divider()
