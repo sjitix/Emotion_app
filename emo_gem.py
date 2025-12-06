@@ -1,3 +1,4 @@
+
 import streamlit as st
 import google.generativeai as genai
 from transformers import pipeline
@@ -15,7 +16,7 @@ classifier = pipeline(
     device=-1
 )
 
-st.title("Emotion Analyzer")
+st.title("💭 Emotion Analyzer")
 st.markdown("*Understand your emotions through journaling*")
 st.divider()
 
