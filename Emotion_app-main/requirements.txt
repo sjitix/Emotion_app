@@ -2,3 +2,5 @@ streamlit
 google-generativeai
 transformers
 torch
+sentencepiece
+protobuf
