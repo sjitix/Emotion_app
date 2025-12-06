@@ -22,7 +22,7 @@ st.markdown("""
                font-weight: bold;
                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
                margin-bottom: 0;'>
-        🎭 <i>Emotion Analyzer</i>
+        🎭 <i>Emolyzer</i>
     </h1>
     <p style='text-align: center;
               color: #7B68EE;
