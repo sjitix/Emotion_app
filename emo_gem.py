@@ -16,8 +16,28 @@ classifier = pipeline(
     device=-1
 )
 
-st.markdown("# 🎭 <u><span style='color: pink;'>*Emotion Analyzer*</span></u>", unsafe_allow_html=True)
-st.markdown("*Understand your emotions through journaling*")
+st.markdown("""
+    <h1 style='text-align: center;
+               background: linear-gradient(90deg, #4A90E2, #7B68EE, #00CED1);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+               background-clip: text;
+               font-size: 3.5em;
+               font-weight: bold;
+               text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+               margin-bottom: 0;'>
+        🎭 <i>Emotion Analyzer</i>
+    </h1>
+    <p style='text-align: center;
+              color: #7B68EE;
+              font-style: italic;
+              font-size: 1.2em;
+              margin-top: 10px;
+              border-bottom: 2px solid #4A90E2;
+              padding-bottom: 20px;'>
+        ✨ Understand your emotions through journaling ✨
+    </p>
+""", unsafe_allow_html=True)
 st.divider()
 
 journal_entry = st.text_area("How are you feeling today?",
