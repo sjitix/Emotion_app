@@ -14,10 +14,6 @@ classifier = pipeline(
     top_k=None
 )
 
-st.sidebar.title("Navigation")
-st.sidebar.page_link("emo_gem.py", label="Home")
-st.sidebar.page_link("pages/records.py", label="Records")
-
 st.markdown("""
     <h1 style='text-align: center;
                color: red;
@@ -37,6 +33,7 @@ st.markdown("""
         ✨ Understand your emotions through journaling ✨
     </p>
 """, unsafe_allow_html=True)
+st.page_link("pages/records.py", label="View Records")
 st.divider()
 
 journal_entry = st.text_area("How are you feeling today?",
