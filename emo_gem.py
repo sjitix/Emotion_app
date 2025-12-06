@@ -3,7 +3,15 @@ import google.generativeai as genai
 from transformers import pipeline
 
 st.set_page_config(page_title="Emotion Analyzer",
-                   layout="centered")
+                   layout="centered",
+                   initial_sidebar_state="expanded")
+
+# Hide default streamlit page navigation
+st.markdown("""
+<style>
+    [data-testid="stSidebarNav"] {display: none;}
+</style>
+""", unsafe_allow_html=True)
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 gemini = genai.GenerativeModel('gemini-2.0-flash')

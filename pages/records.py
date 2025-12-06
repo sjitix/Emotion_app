@@ -1,6 +1,14 @@
 import streamlit as st
 
-st.set_page_config(page_title="Records", layout="centered")
+st.set_page_config(page_title="Records", layout="centered",
+                   initial_sidebar_state="expanded")
+
+# Hide default streamlit page navigation
+st.markdown("""
+<style>
+    [data-testid="stSidebarNav"] {display: none;}
+</style>
+""", unsafe_allow_html=True)
 
 st.sidebar.title("Navigation")
 st.sidebar.page_link("emo_gem.py", label="Home")
