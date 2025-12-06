@@ -15,7 +15,7 @@ classifier = pipeline(
     device=-1
 )
 
-st.title("🎭 Emotion Analyzer")
+st.title("🎭 _Emotion Analyzer_")
 st.markdown("*Understand your emotions through journaling*")
 st.divider()
 
