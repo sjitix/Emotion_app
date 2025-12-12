@@ -51,6 +51,7 @@ if len(all_data) > 1:
     st.divider()
 
     st.subheader("Journal Entries")
+    st.caption("Click on an entry to expand it")
 
     #reverse the order of the entries so that it starts with the latest one
     my_records.reverse()
