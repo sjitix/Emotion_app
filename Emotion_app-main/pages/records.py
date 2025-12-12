@@ -55,13 +55,9 @@ if len(all_data) > 1:
     #reverse the order of the entries so that it starts with the latest one
     my_records.reverse()
 
-    #for each entry desplay date , main emotion , and score + entry iyself
+    #for each entry desplay date , main emotion , and score + entry itself
     for item in my_records:
-
-        st.markdown(f"**{item["date"]} | {item["emotion"]} | {item["score"]}**")
-
-        st.write(item["entry"])
-
-        st.divider()
+        with st.expander(f"**{item['date']} | {item['emotion']} | {item['score']}**"):
+            st.write(item["entry"])
 else:
     st.write("No records yet")
