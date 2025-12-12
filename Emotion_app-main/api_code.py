@@ -59,12 +59,14 @@ your output should be the exact same as the original entry if its smaller than 6
 Only output the rewritten text, nothing else.
 
 Journal entry: {entry}"""
-   
+   #sends the prompt to groq API and gets a response
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": my_prompt}],
         max_tokens=500
     )
+
+    #extracts the text from the response
     result = response.choices[0].message.content.strip()
     return result
     
