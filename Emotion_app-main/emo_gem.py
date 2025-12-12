@@ -43,12 +43,12 @@ st.markdown("""
 
 st.divider()
 
-#takes user input from what the user inputs in the text area box
+#takes user input from the text area box
 user_input = st.text_area("How are you feeling today?", height=150)
 
 
 #creates button of full width 
-#button_pressed takes value True/False when button is pressed / not pressed
+#button_pressed takes value true/false when button is pressed / not pressed
 button_pressed = st.button("Analyze Emotions", use_container_width=True)
 
 
