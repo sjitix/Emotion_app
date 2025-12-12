@@ -1,0 +1,9 @@
+streamlit
+groq
+transformers
+torch
+sentencepiece
+protobuf
+gspread
+google-auth
+plotly
