@@ -35,12 +35,19 @@ and saving data
 records.py -(found in pages folder) - A separate page that displays past journal entries
 
 Libraries used:
+
 ● streamlit - web application framework for building the interactive user interface
+
 ● groq - API client for connecting to the Llama 3.1 model
+
 ● transformers - HuggingFace library for loading and running the RoBERTa model
+
 ● torch - machine learning backend required by the transformers library
+
 ● gspread - allows Python to read and write data from the Google sheets
+
 ● google-auth - handles authentication with Google Cloud using the service account credentials
+
 ● plotly - creates the pie chart visualization of emotion scores
 
 Design summary:
