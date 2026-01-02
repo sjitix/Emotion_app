@@ -1,4 +1,5 @@
 !! The site can be accessed  by using this url https://emotionapp-lcyligtgivazbf3jcuxcha.streamlit.app/  !!
+Due to inactivity , the app may temporarily shut down. Click on the button "get this app back up" and wait a few minutes and then it will work as intended.
 
 
 
